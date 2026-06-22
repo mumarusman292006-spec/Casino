@@ -1,0 +1,70 @@
+# Casino Simulator v1.0
+
+A simple console-based casino game made in C. Made this for my project exhibition.
+
+## What is this?
+
+Its a text based casino simulator where you start with $1000 and play different mini games to try and grow your balance. You can also buy stuff from the shop to boost your luck and protect your bets. If you earn enough total money you become a VIP member and get extra bonuses.
+
+## Features
+
+- 5 different mini games (dice, coin flip, number guessing, a mastermind-style vault game, and a slot machine game)
+- Shop system - buy Lucky Charms, Gold Bars, Insurance, VIP Charms
+- Luck system - your luck % affects your chances of winning in every game
+- VIP system - earn $50,000 total and you unlock VIP status + bonus charm
+- Insurance system - protects your bet from being lost
+- **Save/Load game** - your progress gets saved to a file (`savegame.txt`) so you dont lose everything when you close the program
+
+## How to Compile and Run
+
+Open terminal/cmd in the project folder and run:
+
+```
+gcc casino.c -o casino
+./casino
+```
+
+(on Windows it'll probably be `casino.exe` instead)
+
+## How to Play
+
+1. Run the program
+2. It'll ask if you want to load a saved game - say yes if you played before, no if its your first time
+3. Enter your name (if new game)
+4. You'll land on the Lobby, from here:
+   - **Play Mini Games** - pick from 5 games to try your luck
+   - **Shop** - spend your balance on items
+   - **Inventory** - see what you currently own
+   - **Save Game** - manually save your progress anytime
+   - **Exit** - quits the game (also auto saves before closing)
+
+## The Mini Games
+
+| Game | How it works | Payout |
+|------|--------------|--------|
+| Roll the Dice | guess high(4-6) or low(1-3) | 2x bet |
+| Heads or Tails | 50/50 coin flip | 2x bet |
+| Guess the Number | guess 1-100 in 5 tries, hot/cold hints | 5x bet |
+| Number Vault | crack a 4 digit code in 8 tries (mastermind style) | 10x bet |
+| Lucky 7s | spin 3 numbers, match them for prizes | 2x / 3x / 10x bet |
+
+## Shop Items
+
+- **Lucky Charm ($500)** - increases your base luck permanently and gives a luck bonus when active
+- **Gold Bar ($1000)** - can be sold later for $1200, basically an investment
+- **Insurance ($300)** - protects your next loss, you dont lose your bet
+- **VIP Charm ($2000)** - only available after you become VIP, gives a big luck boost
+
+## How Saving Works (File Handling)
+
+The game uses simple file I/O (`fopen`, `fprintf`, `fscanf`) to write all your stats (name, balance, luck, items, VIP status, total earned) into a text file called `savegame.txt` in the same folder as the program.
+
+- When you choose **Save Game** from the lobby, it writes your current data to the file
+- When you close the program normally (Exit), it auto-saves before quitting
+- Next time you open the game, it asks if you want to load your save - if you say yes it reads the data back from `savegame.txt` and you continue right where you left off
+- If no save file exists yet (first time playing) it just starts a fresh game
+
+## Notes
+
+- This was built as a learning project, the luck system kind of "cheats" in your favor behind the scenes the higher your luck %, the more the random numbers get nudged toward winning combos (e.g in Guess the Number, high luck shrinks the possible secret number range)
+- All progress only saves when you use the Save option or exit properly, so dont force close the terminal if you want to keep your progress
