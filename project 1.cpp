@@ -1,7 +1,3 @@
-/*
-    CASINO SIMULATOR
-    Compatible with Dev C++ and Programiz
-*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,7 +7,7 @@
 #define STARTING_BALANCE 1000
 #define VIP_THRESHOLD    50000
 
-/* Global Variables */
+
 char playerName[50];
 int balance;
 int luck;
@@ -22,7 +18,7 @@ int vipCharms;
 int isVIP;
 int totalEarned;
 
-/* ---- UTILITY ---- */
+
 
 void pauseScreen() {
     printf("\nPress Enter to continue...");
@@ -87,7 +83,7 @@ void checkVIP() {
     }
 }
 
-/* ---- SHOP ---- */
+
 
 void shop() {
     int choice;
@@ -123,7 +119,7 @@ void shop() {
     pauseScreen();
 }
 
-/* ---- INVENTORY ---- */
+
 
 void showInventory() {
     printf("\n========== INVENTORY ==========\n");
